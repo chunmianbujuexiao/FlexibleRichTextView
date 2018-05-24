@@ -1,4 +1,4 @@
-package com.daquexian.flexiblerichtextview;
+package com.example.daquexian.flexiblerichtextview.MyFlexibleRichTextView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,7 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.widget.TextView;
+import android.text.style.AbsoluteSizeSpan;
+import android.util.AttributeSet;
 
 import org.scilab.forge.jlatexmath.core.AjLatexMath;
 import org.scilab.forge.jlatexmath.core.Insets;
@@ -20,23 +21,30 @@ import java.util.List;
  * Created by daquexian on 17-2-16.
  */
 
-public class LaTeXtView extends TextView {
-    public LaTeXtView(Context context) {
+public class MyLaTeXtView extends android.support.v7.widget.AppCompatTextView {
+    public MyLaTeXtView(Context context) {
         super(context);
+        this.setTextSize(30);
     }
 
+    public MyLaTeXtView(Context context, AttributeSet attributeSet) {
+        super(context,attributeSet);
+    }
+
+
     public void setTextWithFormula(TextWithFormula textWithFormula) {
+
         List<TextWithFormula.Formula> formulas = textWithFormula.getFormulas();
         final SpannableStringBuilder builder = textWithFormula;
 
         for (final TextWithFormula.Formula formula : formulas) {
             TeXFormula teXFormula = TeXFormula.getPartialTeXFormula(formula.content);
-
+            System.out.println("得到："+formula.content);
            try {
                 Bitmap bitmap = getBitmap(teXFormula);
-                if (bitmap.getWidth() > FlexibleRichTextView.MAX_IMAGE_WIDTH) {
-                    bitmap = Bitmap.createScaledBitmap(bitmap, FlexibleRichTextView.MAX_IMAGE_WIDTH,
-                            bitmap.getHeight() * FlexibleRichTextView.MAX_IMAGE_WIDTH / bitmap.getWidth(),
+                if (bitmap.getWidth() > MyFlexibleRichTextView.MAX_IMAGE_WIDTH) {
+                    bitmap = Bitmap.createScaledBitmap(bitmap, MyFlexibleRichTextView.MAX_IMAGE_WIDTH,
+                            bitmap.getHeight() * MyFlexibleRichTextView.MAX_IMAGE_WIDTH / bitmap.getWidth(),
                             false);
                 }
 
@@ -79,7 +87,6 @@ public class LaTeXtView extends TextView {
                         });*/
             }
         }
-
         setText(builder);
     }
 

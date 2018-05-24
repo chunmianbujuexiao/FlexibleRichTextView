@@ -1,11 +1,9 @@
-package com.daquexian.flexiblerichtextview;
+package com.example.daquexian.flexiblerichtextview.MyFlexibleRichTextView;
 
 import android.text.SpannableStringBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by daquexian on 17-2-13.
@@ -32,11 +30,22 @@ public class TextWithFormula extends SpannableStringBuilder {
         public String content;
 
         public Formula(int start, int end, String content, int contentStart, int contentEnd) {
-            this.start = start;
-            this.end = end;
+            this.start = start;//文本总位置
+            this.end = end;//文本总结束位置
             this.content = content;
             this.contentStart = contentStart;
             this.contentEnd = contentEnd;
+        }
+
+        @Override
+        public String toString() {
+            return "Formula{" +
+                    "start=" + start +
+                    ", end=" + end +
+                    ", contentStart=" + contentStart +
+                    ", contentEnd=" + contentEnd +
+                    ", content='" + content + '\'' +
+                    '}';
         }
     }
 }

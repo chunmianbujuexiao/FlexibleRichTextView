@@ -1,4 +1,4 @@
-package com.daquexian.flexiblerichtextview;
+package com.example.daquexian.flexiblerichtextview.MyFlexibleRichTextView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
